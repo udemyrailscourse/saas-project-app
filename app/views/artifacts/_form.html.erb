@@ -1,0 +1,36 @@
+<%= form_for @artifact, :html => { :class => "form-horizontal artifact" } do |f| %>
+
+    <% if @artifact.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@artifact.errors.count, "error") %> prohibited this artifact from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @artifact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :upload, value: 'File to upload', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :upload, :class => 'form-control' %>
+    </div>
+  </div>
+  <%= f.hidden_field :project_id %>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            tenant_project_path(tenant_id: Tenant.current_tenant_id, 
+                                id: @artifact.project_id), :class => 'btn btn-default' %>
+
+<% end %>

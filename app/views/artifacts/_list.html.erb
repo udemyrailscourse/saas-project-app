@@ -1,0 +1,29 @@
+<%- model_class = Artifact -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:key) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% artifacts.each do |artifact| %>
+      <tr>
+        <td><%= link_to artifact.name, artifact_path(artifact), class: 'main-link' %></td>
+        <td><%= s3_link Tenant.current_tenant_id, artifact.key %></td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      artifact_path(artifact),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Artifact', new_artifact_path(project_id: @project.id),
+            :class => 'btn btn-primary' %>
