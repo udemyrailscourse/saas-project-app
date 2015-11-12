@@ -1,2 +1,48 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% if current_user %>
+<h3>Organization: <%= @tenant.name %></h3>
+<% else %>
+<div class="jumbotron">
+  <h2>Welcome to the Project Management Application!</h2>
+  <p class="lead">
+    You'll love managing your project with our SaaS application. Please take a look at our great plans
+  </p>
+</div>
+<div class="row">
+  <div class="plans clearfix">
+    <div class="col-lg-3 col-lg-offset-3 plan">
+      <h2>Free Plan</h2>
+      <div class="price pull-right">
+        Price: Free
+      </div>
+      <div class="features">
+        <ul>
+          <li>Unlimited file uploads</li>
+          <li>Responsive design</li>
+          <li>Access anywhere</li>
+          <li>1 project</li>
+        </ul>
+      </div>
+      <p>
+        <%= link_to 'Sign Up', new_user_registration_path(plan: 'free'), class: 'btn btn-primary sign-up' %>
+      </p>
+    </div>
+    <div class="col-lg-3 plan">
+      <h2>Premium Plan</h2>
+      <div class="price pull-right">
+        Price: $10
+      </div>
+      <div class="features">
+        <ul>
+          <li>Unlimited file uploads</li>
+          <li>Responsive design</li>
+          <li>Access anywhere</li>
+          <li class='extra'>Unlimited projects</li>
+        </ul>
+      </div>
+      <p>
+        <%= link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-primary sign-up' %>
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>

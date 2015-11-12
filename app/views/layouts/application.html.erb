@@ -48,9 +48,26 @@
         <a class="navbar-brand" href="#">SaasProjectApp</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <% if current_user %>
+            <li>
+              <%= link_to "<i class='fa fa-users'></i> Add Members".html_safe,
+                          new_member_path,
+                          class: 'navbar-link btn btn-primary' %>
+            </li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-right col-md-4">
+            <% if current_user %>
+            <li class="col-md-8 user-name">
+              <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile' %>
+            </li>
+            <li class="col-md-1">&nbsp;</li>
+            <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
+            <% else %>
+            <li class="col-md-4 pull-right">
+              <%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %>
+            </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -58,25 +75,14 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2015</p>
+
       </footer>
 
     </div> <!-- /container -->

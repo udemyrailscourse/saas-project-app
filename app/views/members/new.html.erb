@@ -1,0 +1,60 @@
+<%- model_class = Member -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'Invite New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+
+<%= form_for(@member, :html => { :class => "form login" }) do |f| %>
+<% if @member.errors.any? %>
+<div id="error_expl" class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= pluralize(@member.errors.count, "error") %> prohibited this Member from being saved:</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+    <% @member.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+<% if @user.errors.any? %>
+<div id="error_expl" class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= pluralize(@user.errors.count, "error") %> prohibited this Member from being saved:</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<%= fields_for( :user ) do |w| %>
+  <div class="control-group">
+    <%= w.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= w.text_field :email, :class => 'form-control' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="control-group">
+  <%= f.label :first_name, :class => "control-label" %>
+  <%= f.text_field :first_name, :class => "form-control" %>
+</div>
+
+<div class="control-group">
+  <%= f.label :last_name, :class => "control-label" %>
+  <%= f.text_field :last_name, :class => "form-control" %>
+</div>
+<br />
+<div class="control-group">
+  <button class="btn btn-primary" type="submit">
+    Create user and invite
+  </button>
+</div>
+<% end %>

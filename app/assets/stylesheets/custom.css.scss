@@ -1,0 +1,113 @@
+.user-name {
+  padding: 0 !important ;
+  padding-left: 5px;
+  padding-top: 15px !important;
+  text-align: center;
+
+  a {
+      color: #fff !important;
+      margin: 0 !important;
+      padding: 5px!important;
+  }
+  a:hover, a:focus {
+    color: #000 !important;
+  }
+}
+
+.nav.navbar-right {
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+.nav.navbar-nav {
+  .navbar-link {
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 15px;
+    padding: 8px;
+  }
+  .navbar-link:focus, .navbar-link:hover {
+    background: #3071a9;
+    color: #fff;
+  }
+  li a {
+    margin-right: 5px;
+  }
+}
+
+.nav.navbar-right li {
+  .btn {
+    color: #fff !important;
+    margin-top: 5%;
+  }
+  .btn-danger:hover, .btn-danger:focus {
+    background-color: darken(#d9534f,20%) !important;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background-color: darken(#428bca,20%) !important;
+  }
+}
+
+.btn-primary:visited, .btn-danger:visited {
+  color: #fff;
+}
+
+.features {
+  ul {
+    margin-left: 0;
+    padding-left: 15px;
+  }
+}
+
+.jumbotron {
+  background-image: asset-url('meeting1.png');
+  background-size: cover;
+  color: #fff;
+  font-family: 'Helvetica Neue' !important;
+  font-stretch: expanded;
+  padding-top: 95px;
+  padding-bottom: 95px;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+
+  h2 {
+    font-size: 35px !important;
+    .lead {
+      font-family: 'Helvetica Neue' !important;
+      font-size: 30px !important;
+    }
+  }
+}
+
+.plan {
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.price {
+  font-weight: 700;
+  size: 120%;
+}
+
+.sign-up {
+  margin-top: 5px;
+}
+
+.extra {
+  color: #5cb85c;
+}
+
+.no-side-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no-left-padding {
+  padding-left: 0 !important;
+}
+
+.no-right-padding {
+  padding-right: 0 !important;
+}
