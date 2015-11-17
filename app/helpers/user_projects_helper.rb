@@ -1,0 +1,2 @@
+module UserProjectsHelper
+end

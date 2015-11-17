@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   acts_as_universal_and_determines_account
   has_one :member, :dependent => :destroy
+  has_many :user_projects
+  has_many :projects, through: :user_projects
   
   def is_admin?
     is_admin
