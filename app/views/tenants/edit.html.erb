@@ -1,0 +1,54 @@
+<script language="JavaScript">
+  Stripe.setPublishableKey("<%= ENV['STRIPE_TEST_PUBLISHABLE_KEY'] %>");
+</script>
+<%= form_for @tenant, url: update_plan_path, html: { class: "#{class_name_for_tenant_form(@tenant)}" } do |f| %>
+  <div class="form-group col-md-12 no-side-padding">
+    <%= f.label :name, 'Organization' %>
+    <span class='description'>(Unique name for your group or organization for the new account)</span>
+    <%= f.text_field :name, required: true, class: "form-control"  %>
+  </div>
+  <div class="form-group col-md-12 no-side-padding">
+    <%= f.label :plan %>
+    <%= f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, 
+                  required: true, class: "form-control" %>
+  </div>
+  <% if @tenant.payment.blank? %>
+    <%= fields_for( :payment ) do |p| %>
+    <div class="row col-md-12">
+      <div class="form-group col-md-4 no-left-padding">
+        <%= p.label :card_number, "Card Number", data: { stripe: 'label' } %>
+        <%= p.text_field :card_number, class: "form-control", required: true,
+                           data: { stripe: 'number' }  %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= p.label :card_cvv, "Card CVV", data: { stripe: 'label' } %>
+        <%= p.text_field :card_cvv, class: "form-control", required: true,
+                           data: { stripe: 'cvv' }  %>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="col-md-12">
+          <%= p.label :card_expires, "Card Expires", data: { stripe: 'label' } %>
+        </div>
+        <div class="col-md-3">
+          <%= p.select :card_expires_month,
+                       options_for_select(Payment.month_options),
+                       { include_blank: 'Month' },
+                       "data-stripe" => "exp-month",
+                       class: "form-control", required: true  %>
+        </div>
+        <div class="col-md-3">
+          <%= p.select :card_expires_year,
+                       options_for_select(Payment.year_options.push),
+                         { include_blank: 'Year' },
+                       class: "form-control",
+                       data: { stripe: "exp-year"}, required: true  %>
+        </div>
+      </div>
+    </div> 
+    <% end %>
+  <% end %>
+  <br />
+  <div class="row col-md-12">
+    <%= f.submit 'Update Plan', class: "btn btn-primary", id: 'update_plan' %>  
+  </div>  
+<% end %>

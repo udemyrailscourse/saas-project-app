@@ -40,7 +40,7 @@ Milia.setup do |config|
   # allows an app to expand the permitted attribute list
   # specify each attribute as a symbol
   # example: [:name]
-  config.whitelist_tenant_params = [:plan]
+  config.whitelist_tenant_params = [:plan, :token]
 
   # whitelist coupon params list
   # allows an app to expand the permitted attribute list
